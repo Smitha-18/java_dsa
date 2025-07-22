@@ -44,7 +44,7 @@ class sll
 
         node todelete=head;
         head=head.next;
-        todelete.next=null;
+        todelete.next=null;  //this will call the garbage collection
     }
 
     public void delete(int data)
@@ -65,11 +65,12 @@ class sll
       if (temp.next==null)
       {
           System.out.println("data not found");
+          return;
       }
-      else
-      {
-          temp.next=temp.next.next;
-      }
+      node todelete=temp.next;
+      temp.next=temp.next.next;
+      todelete.next=null;
+
   }
 
   int getSize()
@@ -83,6 +84,7 @@ class sll
       }
       return size;
   }
+
   public void insert_a(int data,int pos)
   {
       node newnode=new node(data);
@@ -102,7 +104,7 @@ class sll
            newnode.next=head;
            head=newnode;
       }
-      for(int i=0;temp!=null && i<pos-1;i++)
+      for(int i=0;temp!=null && i<pos-1;i++)   //while(--pos>0)
       {
           temp=temp.next;
       }
@@ -132,6 +134,7 @@ public class Singly {
         s1.delete(20);
         s1.insert_a(40,1);
         s1.insert_a(100,50);
+        s1.deletehead();
         s1.print();
     }
 }
